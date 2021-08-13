@@ -3,7 +3,7 @@ const WIDTH = 400,
     HEIGHT = 400;
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
-canvas.style.background = '#66b3ff';
+canvas.style.background = '#34495e';
 const context = canvas.getContext('2d');
 var winner;
 var playerName;
@@ -121,7 +121,7 @@ function Ball(x, y) {
 }
 Ball.prototype.render = function () {
     context.beginPath();
-    context.fillStyle = "#333300";
+    context.fillStyle = "#bdc3c7";
     context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     context.fill();
     context.closePath();
