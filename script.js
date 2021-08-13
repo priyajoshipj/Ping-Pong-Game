@@ -116,7 +116,7 @@ function Ball(x, y) {
     this.x = x;
     this.y = y;
     this.xSpeed = 0;
-    this.ySpeed = 10;
+    this.ySpeed = 15;
     this.radius = 5;
 }
 Ball.prototype.render = function () {
@@ -138,25 +138,23 @@ Ball.prototype.update = function (player_paddle, computer_paddle) {
         this.xSpeed = -this.xSpeed;
     }
     if (this.y - this.radius < 0 || this.y + this.radius > HEIGHT) { //point is scored by either computer or player
-        if(parseInt(document.getElementById("computer").innerHTML) <-3  || parseInt(document.getElementById("human").innerHTML) <-3 ){
+       // if(parseInt(document.getElementById("computer").innerHTML) <-3  || parseInt(document.getElementById("human").innerHTML) <-3 ){
             if (this.y < 0) {
                 console.log('Player wins !');
                 document.getElementById("computer").innerHTML = parseInt(document.getElementById("computer").innerHTML) - 1
+                pauseGame()   
             } else if (this.y + this.radius > HEIGHT) {
                 console.log('Computer wins !');
                 document.getElementById("human").innerHTML = parseInt(document.getElementById("human").innerHTML) - 1
+                pauseGame()   
             }
             this.xSpeed = 0;
             this.ySpeed = 3;
             this.x = WIDTH / 2;
             this.y = HEIGHT / 2;
-        }else{
-            pauseGame()
-            // setTimeout(() => {
-            //     pauseGame()
-            // }, 100);
-           
-        }
+        // }else{
+        //     pauseGame()           
+        // }
         
     }
 
@@ -238,7 +236,9 @@ function pauseGame() {
                     ${winner != document.getElementById("userName").innerHTML ? (
             `
                         <span class="msg"> You lose the match. </span>
-                        <span> Better luck then next time. </span>                         
+                        <span> Better luck then next time. Your Score is  ${parseInt(document.getElementById("human").innerHTML)} and high score is
+                        ${parseInt(document.getElementById("computer").innerHTML)}
+                        </span>                         
                         `
         ) :
             (
