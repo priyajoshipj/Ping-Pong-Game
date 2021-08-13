@@ -116,7 +116,7 @@ function Ball(x, y) {
     this.x = x;
     this.y = y;
     this.xSpeed = 0;
-    this.ySpeed = 1;
+    this.ySpeed = 10;
     this.radius = 5;
 }
 Ball.prototype.render = function () {
