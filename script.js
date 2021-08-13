@@ -116,7 +116,7 @@ function Ball(x, y) {
     this.x = x;
     this.y = y;
     this.xSpeed = 0;
-    this.ySpeed = 5;
+    this.ySpeed = 10;
     this.radius = 5;
 }
 Ball.prototype.render = function () {
@@ -138,17 +138,26 @@ Ball.prototype.update = function (player_paddle, computer_paddle) {
         this.xSpeed = -this.xSpeed;
     }
     if (this.y - this.radius < 0 || this.y + this.radius > HEIGHT) { //point is scored by either computer or player
-        if (this.y < 0) {
-            console.log('Player wins !');
-            document.getElementById("computer").innerHTML = parseInt(document.getElementById("computer").innerHTML) - 1
-        } else if (this.y + this.radius > HEIGHT) {
-            console.log('Computer wins !');
-            document.getElementById("human").innerHTML = parseInt(document.getElementById("human").innerHTML) - 1
+        if(parseInt(document.getElementById("computer").innerHTML) <-3  || parseInt(document.getElementById("human").innerHTML) <-3 ){
+            if (this.y < 0) {
+                console.log('Player wins !');
+                document.getElementById("computer").innerHTML = parseInt(document.getElementById("computer").innerHTML) - 1
+            } else if (this.y + this.radius > HEIGHT) {
+                console.log('Computer wins !');
+                document.getElementById("human").innerHTML = parseInt(document.getElementById("human").innerHTML) - 1
+            }
+            this.xSpeed = 0;
+            this.ySpeed = 3;
+            this.x = WIDTH / 2;
+            this.y = HEIGHT / 2;
+        }else{
+            pauseGame()
+            // setTimeout(() => {
+            //     pauseGame()
+            // }, 100);
+           
         }
-        this.xSpeed = 0;
-        this.ySpeed = 3;
-        this.x = WIDTH / 2;
-        this.y = HEIGHT / 2;
+        
     }
 
     if (this.y > WIDTH / 2) {
@@ -171,8 +180,8 @@ Ball.prototype.update = function (player_paddle, computer_paddle) {
         }
     }
 
-    if (parseInt(document.getElementById("computer").innerHTML) == 5 || parseInt(document.getElementById("human").innerHTML) == 5) {
-        parseInt(document.getElementById("computer").innerHTML) == 5 ? winner = "computer" : winner = playerName
+    if (parseInt(document.getElementById("computer").innerHTML) == 500 || parseInt(document.getElementById("human").innerHTML) == 500) {
+        parseInt(document.getElementById("computer").innerHTML) == 500 ? winner = "computer" : winner = playerName
         gameLevel = gameLevel+1
         pauseGame()
     }
